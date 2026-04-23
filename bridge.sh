@@ -4,6 +4,9 @@ bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release
 
 read -p "Enter bridge domain: " domain
 certbot certonly --standalone -d $domain
+chmod u+x -R /etc/letsencrypt/
+chmod g+x -R /etc/letsencrypt/
+chmod o+x -R /etc/letsencrypt/
 
 curl -L -o /usr/local/etc/xray/config.json https://raw.githubusercontent.com/warmBy274/proxy-server-scripts/refs/heads/main/bridge.json
 sed -i "s/BRIDGE_DOMAIN/$domain/g" /usr/local/etc/xray/config.json
