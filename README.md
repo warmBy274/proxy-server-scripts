@@ -1,5 +1,6 @@
 For setup exit and bridge servers for each other you need:
-1. On exit server enter: `xray x25519`
+0. On exit server install xray with `bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install`
+1. Enter: `xray x25519`
 2. Copy private key
 3. Enter `bash -c "$(curl -L https://raw.githubusercontent.com/warmBy274/proxy-server-scripts/refs/heads/main/exit.sh)"`
 4. Enter SNI, remember it
