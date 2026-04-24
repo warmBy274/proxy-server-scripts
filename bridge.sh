@@ -10,9 +10,9 @@ chmod o+x -R /etc/letsencrypt/
 
 curl -L -o /usr/local/etc/xray/config.json https://raw.githubusercontent.com/warmBy274/proxy-server-scripts/refs/heads/main/bridge.json
 sed -i "s/BRIDGE_DOMAIN/${domain}/g" /usr/local/etc/xray/config.json
-fullchain = "/etc/letsencrypt/live/${domain}/fullchain.pem"
+fullchain="/etc/letsencrypt/live/${domain}/fullchain.pem"
 sed -i "s/CERTIFICATE_FULLCHAIN/${fullchain}/g" /usr/local/etc/xray/config.json
-privkey = "/etc/letsencrypt/live/${domain}/privkey.pem"
+privkey="/etc/letsencrypt/live/${domain}/privkey.pem"
 sed -i "s/CERTIFICATE_PRIVATE/${privkey}/g" /usr/local/etc/xray/config.json
 read -p "Enter exit IP: " exitip
 sed -i "s/EXIT_IP/${exitip}/g" /usr/local/etc/xray/config.json
