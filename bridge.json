@@ -26,13 +26,7 @@
       "port": 443,
       "protocol": "vless",
       "settings": {
-        "clients": [
-          {
-            "id": "7b278eee-fbf8-4990-8d20-5bc1f3425470",
-            "flow": "xtls-rprx-vision",
-            "email": "test"
-          }
-        ],
+        "clients": [],
         "decryption": "none"
       },
       "streamSettings": {
@@ -76,7 +70,7 @@
           "publicKey": "EXIT_PUBLIC_KEY",
           "fingerprint": "chrome",
           "serverName": "4vps.su",
-          "shortId": "d037",
+          "shortId": "EXIT_SHORT_ID",
           "spiderX": "/"
         }
       }
