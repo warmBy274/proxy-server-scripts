@@ -11,5 +11,6 @@ sed -i "s/PRIVATE_KEY/${privkey}/g" /usr/local/etc/xray/config.json
 shortid = openssl rand -hex 2
 sed -i "s/SHORT_ID/${shortid}/g" /usr/local/etc/xray/config.json
 
-echo "Exit short id is: ${shortid}"
+echo "Bridge client id: ${clientid}"
+echo "Short id: ${shortid}"
 systemctl restart --now xray
