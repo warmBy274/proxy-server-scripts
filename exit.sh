@@ -8,7 +8,8 @@ read -p "Enter exit SNI: " sni
 sed -i "s/SNI/${sni}/g" /usr/local/etc/xray/config.json
 read -p "Enter exit private key: " privkey
 sed -i "s/PRIVATE_KEY/${privkey}/g" /usr/local/etc/xray/config.json
-short_id = openssl rand -hex 2
-sed -i "s/SHORT_ID/${short_id}/g" /usr/local/etc/xray/config.json
+shortid = openssl rand -hex 2
+sed -i "s/SHORT_ID/${shortid}/g" /usr/local/etc/xray/config.json
 
+echo "Exit short id is: ${shortid}"
 systemctl restart --now xray
