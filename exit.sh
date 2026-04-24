@@ -1,5 +1,4 @@
 apt update -y && apt upgrade -y
-bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install
 
 curl -L -o /usr/local/etc/xray/config.json https://raw.githubusercontent.com/warmBy274/proxy-server-scripts/refs/heads/main/exit.json
 clientid = xray uuid
