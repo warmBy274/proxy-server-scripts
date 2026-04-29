@@ -1,5 +1,5 @@
 apt update -y && apt upgrade -y
-apt install certbot -y
+apt install certbot nginx -y
 bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install
 
 read -p "Enter bridge domain: " domain
