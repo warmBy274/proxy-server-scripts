@@ -65,17 +65,17 @@
       "settings": {
         "address": "EXIT_IP",
         "port": 443,
-        "id": "EXIT_CLIENT",
+        "id": "CLIENT_ID",
         "flow": "xtls-rprx-vision",
         "encryption": "none"
       },
       "streamSettings": {
         "security": "reality",
         "realitySettings": {
-          "publicKey": "EXIT_PUBLIC_KEY",
+          "publicKey": "PUBLIC_KEY",
           "fingerprint": "chrome",
-          "serverName": "4vps.su",
-          "shortId": "EXIT_SHORT_ID",
+          "serverName": "SNI",
+          "shortId": "SHORT_ID",
           "spiderX": "/"
         }
       }
