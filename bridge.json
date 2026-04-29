@@ -65,7 +65,7 @@
       "settings": {
         "address": "EXIT_IP",
         "port": 443,
-        "id": "CLIENT_ID",
+        "id": "BRIDGE_CLIENT_ID",
         "flow": "xtls-rprx-vision",
         "encryption": "none"
       },
