@@ -11,7 +11,7 @@
       "settings": {
         "clients": [
           {
-            "id": "CLIENT_ID",
+            "id": "BRIDGE_CLIENT_ID",
             "flow": "xtls-rprx-vision",
             "email": "bridge"
           }
@@ -29,10 +29,6 @@
           "privateKey": "PRIVATE_KEY",
           "shortIds": ["SHORT_ID"]
         }
-      },
-      "sniffing": {
-        "enabled": true,
-        "destOverride": ["http", "tls", "quic"]
       }
     }
   ],
