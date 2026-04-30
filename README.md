@@ -1,15 +1,5 @@
 For setup exit and bridge servers for each other you need:
-0. On exit server install xray with `bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install`
-1. Enter: `xray x25519`
-2. Copy private key
-3. Enter `bash -c "$(curl -L https://raw.githubusercontent.com/warmBy274/proxy-server-scripts/refs/heads/main/exit.sh)"`
-4. Enter SNI, remember it
-5. Enter copied private key
-6. In terminal printed client id and short id, remember it
-7. On bridge server enter `bash -c "$(curl -L https://raw.githubusercontent.com/warmBy274/proxy-server-scripts/refs/heads/main/bridge.sh)"`
-8. Enter domain that you are buyed for bridge server
-9. Enter exit server ip
-10. Enter client id from step 6
-11. Enter short id from step 6
-12. Enter public key/password from step 1
-13. Done! Use api for creating clients and managing them
+1. Setup ssh keys for both servers to enter ssh without password
+2. Install requirements
+3. Run `configure.py`
+4. Follow script instructions
