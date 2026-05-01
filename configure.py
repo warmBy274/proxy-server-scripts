@@ -50,12 +50,6 @@ def configure_bridge(client: SSHClient, exit_ip, bridge_client_id, public_key, s
     _, stdout, stderr = client.exec_command("bash -c \"$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)\" @ install")
     print(stdout.read().decode())
     print(stderr.read().decode())
-    _, stdout, stderr = client.exec_command("chmod o+x -R /etc/letsencrypt/")
-    print(stdout.read().decode())
-    print(stderr.read().decode())
-    _, stdout, stderr = client.exec_command("chmod o+r -R /etc/letsencrypt/")
-    print(stdout.read().decode())
-    print(stderr.read().decode())
 
     create_test_client = True if input("Create test client? y/N: ") == "y" else False
     config = str(get("https://raw.githubusercontent.com/warmBy274/proxy-server-scripts/refs/heads/main/bridge.json").text)
@@ -80,6 +74,12 @@ def configure_bridge(client: SSHClient, exit_ip, bridge_client_id, public_key, s
     config = config.replace("SHORT_ID", short_id)
 
     _, stdout, stderr = client.exec_command(f"certbot certonly --standalone -d {domain} -n --agree-tos --register-unsafely-without-email")
+    print(stdout.read().decode())
+    print(stderr.read().decode())
+    _, stdout, stderr = client.exec_command("chmod o+x -R /etc/letsencrypt/")
+    print(stdout.read().decode())
+    print(stderr.read().decode())
+    _, stdout, stderr = client.exec_command("chmod o+r -R /etc/letsencrypt/")
     print(stdout.read().decode())
     print(stderr.read().decode())
     _, stdout, stderr = client.exec_command("apt install nginx -y")
