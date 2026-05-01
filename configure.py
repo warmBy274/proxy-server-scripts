@@ -33,6 +33,7 @@ def configure_exit(client: SSHClient):
     with sftp.open("/usr/local/etc/xray/config.json", "w") as file:
         file.write(config)
     sftp.close()
+
     _, stdout, stderr = client.exec_command("systemctl restart --now xray")
     print(stdout.read().decode())
     print(stderr.read().decode())
@@ -58,6 +59,18 @@ def configure_bridge(client: SSHClient, exit_ip, bridge_client_id, public_key, s
     _, stdout, stderr = client.exec_command("chmod o+r -R /etc/letsencrypt/")
     print(stdout.read().decode())
     print(stderr.read().decode())
+    _, stdout, stderr = client.exec_command("apt install nginx -y")
+    print(stdout.read().decode())
+    print(stderr.read().decode())
+    _, stdout, stderr = client.exec_command("touch /var/www/html/index.html")
+    print(stdout.read().decode())
+    print(stderr.read().decode())
+    _, stdout, stderr = client.exec_command("touch /etc/nginx/sites-available/fallback")
+    print(stdout.read().decode())
+    print(stderr.read().decode())
+    _, stdout, stderr = client.exec_command("ln /etc/nginx/sites-available/fallback /etc/nginx/sites-enabled/")
+    print(stdout.read().decode())
+    print(stderr.read().decode())
 
     create_test_client = True if input("Create test client? y/N: ") == "y" else False
     config = str(get("https://raw.githubusercontent.com/warmBy274/proxy-server-scripts/refs/heads/main/bridge.json").text)
@@ -65,6 +78,11 @@ def configure_bridge(client: SSHClient, exit_ip, bridge_client_id, public_key, s
         config = str(get("https://raw.githubusercontent.com/warmBy274/proxy-server-scripts/refs/heads/main/bridge_with_test_client.json").text)
     domain = input("Enter bridge server domain: ")
     test_client_id = str(uuid4())
+    try:
+        with open(input("Enter fallback html file path: "), "r") as file:
+            html_data = file.read()
+    except:
+        html_data = ""
 
     config = config.replace("TEST_CLIENT_ID", test_client_id)
     config = config.replace("DOMAIN", domain)
@@ -76,11 +94,20 @@ def configure_bridge(client: SSHClient, exit_ip, bridge_client_id, public_key, s
     config = config.replace("SNI", sni)
     config = config.replace("SHORT_ID", short_id)
     
+
     sftp = client.open_sftp()
     with sftp.open("/usr/local/etc/xray/config.json", "w") as file:
         file.write(config)
+    with sftp.open("/var/www/html/index.html", "w") as file:
+        file.write(html_data)
+    with sftp.open("/etc/nginx/sites-available/fallback", "w") as file:
+        file.write(str(get("https://raw.githubusercontent.com/warmBy274/proxy-server-scripts/refs/heads/main/nginx.config").text))
     sftp.close()
+
     _, stdout, stderr = client.exec_command("systemctl restart --now xray")
+    print(stdout.read().decode())
+    print(stderr.read().decode())
+    _, stdout, stderr = client.exec_command("systemctl restart --now nginx")
     print(stdout.read().decode())
     print(stderr.read().decode())
 
