@@ -71,6 +71,9 @@ def configure_bridge(client: SSHClient, exit_ip, bridge_client_id, public_key, s
     _, stdout, stderr = client.exec_command("ln /etc/nginx/sites-available/fallback /etc/nginx/sites-enabled/")
     print(stdout.read().decode())
     print(stderr.read().decode())
+    _, stdout, stderr = client.exec_command("rm /etc/nginx/sites-enabled/default")
+    print(stdout.read().decode())
+    print(stderr.read().decode())
 
     create_test_client = True if input("Create test client? y/N: ") == "y" else False
     config = str(get("https://raw.githubusercontent.com/warmBy274/proxy-server-scripts/refs/heads/main/bridge.json").text)
