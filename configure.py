@@ -58,9 +58,10 @@ def configure_bridge(client: SSHClient, exit_ip, bridge_client_id, public_key, s
     domain = input("Enter bridge server domain: ")
     test_client_id = str(uuid4())
     try:
-        with open(input("Enter fallback html file path: "), "r") as file:
+        with open(input("Enter fallback html file path: "), "r", encoding="utf-8") as file:
             html_data = file.read()
-    except:
+    except Exception as e:
+        print(e)
         html_data = ""
 
     config = config.replace("TEST_CLIENT_ID", test_client_id)
