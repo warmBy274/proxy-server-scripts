@@ -50,6 +50,9 @@ def configure_bridge(client: SSHClient, exit_ip, bridge_client_id, public_key, s
     _, stdout, stderr = client.exec_command("bash -c \"$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)\" @ install")
     print(stdout.read().decode())
     print(stderr.read().decode())
+    _, stdout, stderr = client.exec_command("curl -L https://github.com/warmBy274/proxy-server-scripts/raw/refs/heads/main/vpn-server -o /usr/local/bin/vpn-server")
+    print(stdout.read().decode())
+    print(stderr.read().decode())
 
     create_test_client = True if input("Create test client? y/N: ") == "y" else False
     config = str(get("https://raw.githubusercontent.com/warmBy274/proxy-server-scripts/refs/heads/main/bridge.json").text)
